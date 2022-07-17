@@ -3,10 +3,10 @@ from discord import Client
 from discord import guild
 from interactions import Intents
 from threading import Thread
-from functions import pomodoro
+from functions import pomodoro, between_pomodoro
+import asyncio
 
-
-HARRY_TOKEN = "USE TOKEN DO NOT PUT ON GIT HUB"
+HARRY_TOKEN = "insert token here"
 
 bot_intents = discord.Intents.all()
 bot = Client(intents=bot_intents)
@@ -21,18 +21,9 @@ async def on_message(msg) :
     if message_sender == bot.user : return
     message_string = msg.content
     if message_string.startswith("$study") :
-            user_dm =  await message_sender.create_dm()
-            pomodoro_thread = Thread(target=pomodoro, args=(user_dm,))
-            pomodoro_thread.start() # brings an error up.....
-            
-            #for i in range(3) :
-             #   await user_dm.send("Start studying.")
-              #  sleep(STUDY_TIME) 
-               # await user_dm.send("Break time.")
-                #sleep(SHORT_BREAK)
-            #await user_dm.send("Start studying.")
-            #sleep(STUDY_TIME)
-            #await user_dm.send("Break time.")
-
+            user_dm = await message_sender.create_dm()
+            asyncio.get_event_loop().create_task(pomodoro(user_dm))
+            #pomodoro_thread = Thread(target=between_pomodoro, args=(user_dm,))
+            #pomodoro_thread.start() # brings an error up.....
     
 bot.run(HARRY_TOKEN)

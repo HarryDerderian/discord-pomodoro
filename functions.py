@@ -1,4 +1,6 @@
 from time import sleep
+import asyncio
+
 STUDY_TIME = 1500 # 25 MIN
 SHORT_BREAK = 300 # 5 MIN
 LONG_BREAK = 1200 # 20 MIN
