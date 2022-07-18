@@ -25,7 +25,7 @@ async def on_message(msg) :
     message_string = msg.content
     if message_string.startswith("$study") :
             if user_id not in tasks :
-                timer = asyncio.get_event_loop().create_task(pomodoro(msg))
+                timer = asyncio.get_event_loop().create_task(pomodoro(msg,tasks))
                 tasks[user_id] = timer
             else :
                 await msg.reply("**" +message_sender.mention+ " Pomodoro Timer already set, type $cancel to stop your session.**")
