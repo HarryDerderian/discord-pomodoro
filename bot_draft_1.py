@@ -29,6 +29,7 @@ async def on_message(msg) :
                 tasks[user_id] = timer
             else :
                 await msg.reply("**" +message_sender.mention+ " Pomodoro Timer already set, type $cancel to stop your session.**")
+                
     elif message_string.startswith("$clear") :
         await msg.channel.purge()
         await msg.channel.send("**Chat cleared.**")
