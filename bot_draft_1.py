@@ -6,7 +6,7 @@ from threading import Thread
 from functions import pomodoro
 import asyncio
 
-HARRY_TOKEN = "insert token here"
+HARRY_TOKEN = ""
 
 bot_intents = discord.Intents.all()
 bot = Client(intents=bot_intents)
@@ -21,9 +21,11 @@ async def on_message(msg) :
     if message_sender == bot.user : return
     message_string = msg.content
     if message_string.startswith("$study") :
-            user_dm = await message_sender.create_dm()
-            asyncio.get_event_loop().create_task(pomodoro(user_dm))
-            #pomodoro_thread = Thread(target=between_pomodoro, args=(user_dm,))
-            #pomodoro_thread.start() # brings an error up.....
+            asyncio.get_event_loop().create_task(pomodoro(msg))
+    
+    elif message_string.startswith("$clear") :
+        await msg.channel.purge()
+        await msg.channel.send("**Chat cleared.**")
+
     
 bot.run(HARRY_TOKEN)
