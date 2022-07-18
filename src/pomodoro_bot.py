@@ -1,11 +1,8 @@
-import discord
-from discord import Client, guild
 from interactions import Intents
-from threading import Thread
 from functions import pomodoro
 import asyncio
 
-TOKEN = ""
+TOKEN = "OTkwODY5MDIyNzE3MzgyNzA2.GZ3dJa.gOx6dSkjPl9w_5ha_OyDO92MDhI4z8LSQMN4Hw"
 tasks = {}
 POMODORO_INFO = "The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. \
 It uses a kitchen timer to break work into intervals, typically 25 minutes in length, separated by short breaks."
@@ -29,7 +26,7 @@ async def on_message(msg) :
                 timer = asyncio.get_event_loop().create_task(pomodoro(msg,tasks))
                 tasks[user_id] = timer
             else :
-                await msg.reply("**" +message_sender.mention+ " Pomodoro Timer already set, type $cancel to stop your session.**")
+                await msg.reply("**" +message_sender.mention+ " Pomodoro timer already set, type $cancel to stop your session.**")
                 
     elif message_string.startswith("$clear") and (user_id == 132944593548214272 or user_id == 238819922677858304 or user_id == 291083531679956992) :
         await msg.channel.purge()
@@ -47,7 +44,8 @@ async def on_message(msg) :
         await msg.reply("**" +message_sender.mention+ " " +POMODORO_INFO+ "**")
 
     elif message_string.startswith("$help") :
-        await msg.reply("**Current Commands: " +str(COMMANDS)+ "**")
+        commands_string =', '.join(COMMANDS)
+        await msg.reply("**Current Commands: " +commands_string+ "**")
 
     
 bot.run(TOKEN)
