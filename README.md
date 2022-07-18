@@ -1,2 +1,2 @@
-# discord-rpg
-An easy and fun discord bot, rpg adventure game.
+# discord-pomodoro
+A bot made to help you study utilizing a Pomodoro Timer.
