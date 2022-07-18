@@ -1,4 +1,3 @@
-from time import sleep
 import asyncio
 
 STUDY_TIME = 1500 # 25 MIN
