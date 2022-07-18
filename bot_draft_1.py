@@ -3,7 +3,7 @@ from discord import Client
 from discord import guild
 from interactions import Intents
 from threading import Thread
-from functions import pomodoro, between_pomodoro
+from functions import pomodoro
 import asyncio
 
 HARRY_TOKEN = "insert token here"
