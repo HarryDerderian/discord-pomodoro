@@ -2,7 +2,7 @@ from interactions import Intents
 from functions import pomodoro
 import asyncio
 
-TOKEN = "OTkwODY5MDIyNzE3MzgyNzA2.GZ3dJa.gOx6dSkjPl9w_5ha_OyDO92MDhI4z8LSQMN4Hw"
+TOKEN = ""
 tasks = {}
 POMODORO_INFO = "The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. \
 It uses a kitchen timer to break work into intervals, typically 25 minutes in length, separated by short breaks."
