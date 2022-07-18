@@ -4,9 +4,8 @@ from interactions import Intents
 from threading import Thread
 from functions import pomodoro
 import asyncio
-import json
 
-TOKEN = str(json.loads(token))
+TOKEN = ""
 tasks = {}
 POMODORO_INFO = "The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. \
 It uses a kitchen timer to break work into intervals, typically 25 minutes in length, separated by short breaks."
@@ -32,7 +31,7 @@ async def on_message(msg) :
             else :
                 await msg.reply("**" +message_sender.mention+ " Pomodoro Timer already set, type $cancel to stop your session.**")
                 
-    elif message_string.startswith("$clear") and user_id == 132944593548214272 or user_id == 238819922677858304 or user_id == 291083531679956992 :
+    elif message_string.startswith("$clear") and (user_id == 132944593548214272 or user_id == 238819922677858304 or user_id == 291083531679956992) :
         await msg.channel.purge()
         await msg.channel.send("**Chat cleared.**")
 
