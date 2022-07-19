@@ -1,13 +1,17 @@
+import discord
+from discord import Client
 from interactions import Intents
 from functions import pomodoro
 import asyncio
 
-TOKEN = ""
-tasks = {}
-POMODORO_INFO = "The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. \
-It uses a kitchen timer to break work into intervals, typically 25 minutes in length, separated by short breaks."
-COMMANDS = ["$study", "$cancel", "$pomodoro", "$help"]
+TOKEN = "OTkwODY5MDIyNzE3MzgyNzA2.GbsnKh.kIi-lJaplUrzwambzyVrtMIcorEmNPGc4LBvuE"
+POMODORO_INFO = '''```diff
+- The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. 
+- It uses a kitchen timer to break work into intervals, typically 25 minutes in length, separated by short breaks
+```'''
+COMMANDS =', '.join( ["$study", "$cancel", "$pomodoro", "$help"] )
 
+tasks = {}
 bot_intents = discord.Intents.all()
 bot = Client(intents=bot_intents)
 
@@ -36,16 +40,15 @@ async def on_message(msg) :
         if user_id in tasks :
             tasks[user_id].cancel()
             tasks.pop(user_id)
-            await msg.reply("**" +message_sender.mention+ " Pomodoro Timer stopped.**")
+            await msg.reply("**" +message_sender.mention+ " Pomodoro timer stopped.**")
         else :
             await msg.reply("**You aren't currently studying, type $study to start.**")
     
     elif message_string.startswith("$pomodoro") :
-        await msg.reply("**" +message_sender.mention+ " " +POMODORO_INFO+ "**")
+        await msg.reply(POMODORO_INFO)
 
     elif message_string.startswith("$help") :
-        commands_string =', '.join(COMMANDS)
-        await msg.reply("**Current Commands: " +commands_string+ "**")
+        await msg.reply("**Current Commands: " +COMMANDS+ "**")
 
     
 bot.run(TOKEN)

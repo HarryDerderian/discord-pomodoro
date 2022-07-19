@@ -7,7 +7,7 @@ LONG_BREAK = 1200 # 20 MIN
 async def pomodoro(msg,tasks) :
     user_mention = msg.author.mention
     message_channel = msg.channel
-    await message_channel.send("**" +user_mention+ " :tomato: Pomodoro Timer on. Start studying! (25 minutes)**")
+    await message_channel.send("**" +user_mention+ " :tomato: Pomodoro timer on, start studying! (25 minutes)**")
     await sleep(STUDY_TIME) 
     await message_channel.send("**" +user_mention+ " first break: (5 minutes)**")
     await sleep(SHORT_BREAK)
